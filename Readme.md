@@ -1,120 +1,96 @@
 ﻿<a name="br1"></a> 
 
-**Snowﬂake Cost Esꢀmator**
+**Snowﬂake Cost Estimator**
 
-Introducꢀon:
+Introduction:
 
-This documentaꢀon provides guidance on using the Snowﬂake Cost Esꢀmator,
+This documentaton provides guidance on using the Snowﬂake Cost Estimator, a Python script designed to calculate the estimated costs 
 
-a Python script designed to calculate the esꢀmated costs associated with data
+associated with data storage and computation on the Snowﬂake platorm. The cost estimator includes functions to calculate storage costs, 
 
-storage and computaꢀon on the Snowﬂake plaꢁorm. The cost esꢀmator
-
-includes funcꢀons to calculate storage costs, compute costs, and generate an
-
-overall cost esꢀmate based on user inputs.
+compute costs, and generate an overall cost estimate based on user inputs.
 
 Prerequisites:
 
-Before using the Snowﬂake Cost Esꢀmator, ensure the following prerequisites
-
-are met:
+Before using the Snowﬂake Cost Estimator, ensure the following prerequisites are met:
 
 • Python installed (version 3.9 or higher)
 
-• Knowledge of Snowﬂake ediꢀon types and warehouse sizes.
+• Knowledge of Snowﬂake edition types and warehouse sizes.
 
-• A clear understanding of the data loading requirements and storage
+• A clear understanding of the data loading requirements and storage preferences.
 
-preferences.
+Seꢂng Up Snowﬂake Cost Estimator:
 
-Seꢂng Up Snowﬂake Cost Esꢀmator:
-
-To use the Snowﬂake Cost Esꢀmator, follow these steps:
+To use the Snowﬂake Cost Estimator, follow these steps:
 
 • Open your Python IDE (e.g., PyCharm).
 
-• Install the necessary dependencies by running the following command in
-
-the terminal:
+• Install the necessary dependencies by running the following command in the terminal:
 
 **pip install pandas**
 
-Imporꢀng necessary libraries:
+Importing necessary libraries:
 
-Pandas library allows to organize and present the cost esꢀmates and
+Pandas library allows to organize and present the cost estimates and requirements in a structured format, making it easier to understand 
 
-requirements in a structured format, making it easier to understand and
-
-analyse the results.
+and analyse the results.
 
 
 
 <a name="br2"></a> 
 
-Esꢀmaꢀng Storage and Compute Costs:
+Estimating Storage and Compute Costs:
 
-1\. Esꢀmaꢀng Storage Cost:
+1\. Estimating Storage Cost:
 
-The calculate\_storage\_cost funcꢀon calculates the storage cost based on the
+The calculate_storage_cost function calculates the storage cost based on the
 
-iniꢀal data size, storage type (on-demand or capacity), and the number of
+initial data size, storage type (on-demand or capacity), and the number of
 
 months for which the storage is required.
 
-• Convert the iniꢀal data size from the user-speciﬁed unit to terabytes
-
-(TB).
+• Convert the initial data size from the user-speciﬁed unit to terabytes (TB).
 
 • Determine the storage cost based on the storage type.
 
-• For 'on-demand' storage, calculate the cost as the product of data size, a
+• For 'on-demand' storage, calculate the cost as the product of data size, a constant factor (40), and the number of months.
 
-constant factor (40), and the number of months.
+• For 'capacity' storage, calculate the cost as the product of data size, a constant factor (23), and the number of months.
 
-• For 'capacity' storage, calculate the cost as the product of data size, a
-
-constant factor (23), and the number of months.
-
-• If the provided storage\_type is neither 'on-demand' nor 'capacity', a
-
-ValueError is raised to choose a valid storage type.
+• If the provided storage\type is neither 'on-demand' nor 'capacity', a ValueError is raised to choose a valid storage type.
 
 • Return the calculated storage cost.
 
-Variable Descripꢀon:
+Variable Description:
 
-iniꢀal\_data\_size\_tb: The iniꢀal data size in terabytes (TB).
+initial_data_size_tb: The initial data size in terabytes (TB).
 
-storage\_type: The type of storage, either 'on-demand' or 'capacity'.
+storage_type: The type of storage, either 'on-demand' or 'capacity'.
 
-no\_of\_months: The number of months for which storage is required.
+no_of_months: The number of months for which storage is required.
 
-storage\_cost\_tb: The esꢀmated total storage cost in terabytes (TB).
+storage_cost_tb: The estimated total storage cost in terabytes (TB).
 
 
 
 <a name="br3"></a> 
 
-2\. Esꢀmaꢀng Compute Cost:
+2\. Estimating Compute Cost:
 
-The calculate\_compute\_cost funcꢀon computes the cost associated with data
+The calculate_compute_cost function computes the cost associated with data loading and compute requirements. It considers factors such 
 
-loading and compute requirements. It considers factors such as Snowﬂake
+as Snowﬂake edition type, the number of departments, warehouse size for data loading, and the daily and monthly usage of compute 
 
-ediꢀon type, the number of departments, warehouse size for data loading, and
-
-the daily and monthly usage of compute resources.
+resources.
 
 Data Loading Requirements:
 
 • Determine the credit per hour based on the speciﬁed warehouse size.
 
-• Determine the cost per credit based on the ediꢀon type.
+• Determine the cost per credit based on the edition type.
 
-• Calculate the data loading requirements based on the determined credit
-
-per hour, number of days, and hours per day for data loading.
+• Calculate the data loading requirements based on the determined credit per hour, number of days, and hours per day for data loading.
 
 
 
@@ -122,85 +98,57 @@ per hour, number of days, and hours per day for data loading.
 
 Compute Requirements:
 
-• Iterate through each department, asking the user for informaꢀon such as
+• Iterate through each department, asking user for information such as department name, warehouse size, hours per day, and days per month.
 
-department name, warehouse size, hours per day, and days per month.
+• Calculate the compute requirements for each department based on the credit per hour, hours per day, and days per month.
 
-• Calculate the compute requirements for each department based on the
+• Calculate the total compute requirements by summing up the individual department requirements.
 
-credit per hour, hours per day, and days per month.
+• Calculate the total compute cost by multiplying the sum of data loading and total compute requirements with the cost per credit.
 
-• Calculate the total compute requirements by summing up the individual
-
-department requirements.
-
-• Calculate the total compute cost by mulꢀplying the sum of data loading
-
-and total compute requirements with the cost per credit.
-
-• Return the calculated compute cost, data loading requirements, and data
-
-loading requirements with ediꢀon cost.
+• Return the calculated compute cost, data loading requirements, and data loading requirements with edition cost.
 
 
 
 <a name="br5"></a> 
 
-Variable Descripꢀon:
+Variable Description:
 
-ediꢀon\_type: The ediꢀon type, which can be "Standard," "Enterprise," or
+edition_type: The edition type, which can be "Standard," "Enterprise," or "Business Critical."
 
-"Business Criꢀcal."
+num_departments: The number of departments in the compute requirements.
 
-num\_departments: The number of departments in the compute requirements.
+warehouse_size_dl: The warehouse size for data loading.
 
-warehouse\_size\_dl: The warehouse size for data loading.
+no_of_days_dl: The number of days for data loading requirements.
 
-no\_of\_days\_dl: The number of days for data loading requirements.
+no_of_hours_per_day_dl: The number of hours per day for data loading requirements.
 
-no\_of\_hours\_per\_day\_dl: The number of hours per day for data loading
+department_data: A list to store department-speciﬁc compute requirements.
 
-requirements.
+compute_cost_tb: The estimated total compute cost.
 
-department\_data: A list to store department-speciﬁc compute requirements.
+Estimating Overall Cost:
 
-compute\_cost\_tb: The esꢀmated total compute cost.
+The generate_cost_estimate function serves as the main entry point for generating a comprehensive cost estimate. It takes user inputs 
 
-Esꢀmaꢀng Overall Cost:
+for various parameters like initial data size, edition type, warehouse size for data loading, storage type, number of months for storage, 
 
-The generate\_cost\_esꢀmate funcꢀon serves as the main entry point for
+and department-speciﬁc compute requirements. It combines the results from the storage and compute cost calculations to provide an overall 
 
-generaꢀng a comprehensive cost esꢀmate. It takes user inputs for various
+cost estimate.
 
-parameters like iniꢀal data size, ediꢀon type, warehouse size for data loading,
+• Utilize the calculate_storage_cost function to estimate the storage cost based on the provided input parameters.
 
-storage type, number of months for storage, and department-speciﬁc compute
+• Utilize the calculate_compute_cost function to estimate the compute cost based on the provided input parameters.
 
-requirements. It combines the results from the storage and compute cost
+• Sum up the storage cost and compute cost to obtain the total annual cost.
 
-calculaꢀons to provide an overall cost esꢀmate.
+• Create pandas DataFrame to organize and present the cost details in a tabular format.
 
-• Uꢀlize the calculate\_storage\_cost funcꢀon to esꢀmate the storage cost
+• Concatenate the Data Loading requirements and Compute requirements.
 
-based on the provided input parameters.
-
-• Uꢀlize the calculate\_compute\_cost funcꢀon to esꢀmate the compute
-
-cost based on the provided input parameters.
-
-• Sum up the storage cost and compute cost to obtain the total annual
-
-cost.
-
-• Create pandas DataFrame to organize and present the cost details in a
-
-tabular format.
-
-• Concatenate the Data Loading requirements and Compute requirements
-
-DataFrames to create a combined summary DataFrame.
-
-• Return the DataFrames containing cost esꢀmates and requirements.
+• Return the DataFrames containing cost estimates and requirements.
 
 
 
@@ -208,36 +156,26 @@ DataFrames to create a combined summary DataFrame.
 
 • Get all the inputs required from the user.
 
-The funcꢀon outputs two DataFrames: cost\_df containing cost details and
+• The function outputs two DataFrames: costdf containing cost details and combineddf summarizing data loading and compute requirements. 
 
-combined\_df summarizing data loading and compute requirements. The
-
-results are then displayed in tabular format.
+The results are then displayed in tabular format.
 
 
 
 <a name="br7"></a> 
 
-Sample Input:
-
 Output:
 
-The output displays a summary of the esꢀmated costs, including storage cost,
+The output displays a summary of the estimated costs, including storage cost, compute cost, and the total annual cost. Additionally, it 
 
-compute cost, and the total annual cost. Addiꢀonally, it provides a detailed
-
-breakdown of department-speciﬁc data loading and compute requirements.
+provides a detailed breakdown of department-speciﬁc data loading and compute requirements.
 
 Conclusion:
 
-The Snowﬂake Cost Esꢀmator provides a valuable tool for users seeking to
+The Snowﬂake Cost Estimator provides a valuable tool for users seeking to estimate the ﬁnancial implications of utilizing Snowﬂake for 
 
-esꢀmate the ﬁnancial implicaꢀons of uꢀlizing Snowﬂake for data storage and
+data storage and computation. In conclusion, the Snowﬂake Cost Estimator empowers users to make informed decisions regarding resource 
 
-computaꢀon. In conclusion, the Snowﬂake Cost Esꢀmator empowers users to
-
-make informed decisions regarding resource allocaꢀon and budgeꢀng within
-
-the Snowﬂake plaꢁorm.
+allocation and budgeting within the Snowﬂake platform.
 
 "# Snowflake-Cost-Estimator" 
